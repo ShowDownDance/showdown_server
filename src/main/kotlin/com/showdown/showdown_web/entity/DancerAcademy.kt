@@ -1,25 +1,23 @@
 package com.showdown.showdown_web.entity
 
+import com.showdown.showdown_web.entity.common.BaseClass
 import jakarta.persistence.*
+import jakarta.persistence.FetchType.LAZY
 
 @Entity
-@Table(name = "DANCERACADEMY")
+@Table(name = "dancer_academy")
 class DancerAcademy(
     dancer: Dancer,
     academy: Academy
-) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
-
-    @ManyToOne
-    @JoinColumn(name = "id")
+) : BaseClass() {
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "dancer_id")
     var dancer: Dancer = dancer
         protected set
 
 
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "academy_id")
     var academy: Academy = academy
         protected set
 }

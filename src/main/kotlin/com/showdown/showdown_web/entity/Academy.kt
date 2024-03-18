@@ -1,18 +1,16 @@
 package com.showdown.showdown_web.entity
 
+import com.showdown.showdown_web.entity.common.BaseClass
 import jakarta.persistence.*
 
 
 @Entity
-@Table(name = "ACADEMY")
+@Table(name = "academy")
 class Academy(
     name: String,
     dancerAcademies: List<DancerAcademy>
-) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Long = 0
-
+) : BaseClass() {
+    @Column(name = "name" , nullable = false)
     var name: String = name
         protected set
 
