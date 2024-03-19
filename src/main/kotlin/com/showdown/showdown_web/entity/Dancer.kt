@@ -2,14 +2,14 @@ package com.showdown.showdown_web.entity
 
 import com.showdown.showdown_web.entity.common.BaseClass
 import jakarta.persistence.*
-import org.hibernate.proxy.HibernateProxy
 
 @Entity
 @Table(name = "dancer")
 class Dancer(
     name: String,
     crew: String?,
-    dancerAcademies: List<DancerAcademy>
+    dancerAcademies: MutableSet<DancerAcademy>,
+    dancerLessons: MutableSet<DancerLesson>
 ) : BaseClass() {
     var name: String = name
         protected set
@@ -18,6 +18,10 @@ class Dancer(
         protected set
 
     @OneToMany(mappedBy = "dancer")
-    var dancerAcademies: List<DancerAcademy> = dancerAcademies
+    var dancerAcademies: MutableSet<DancerAcademy> = dancerAcademies
+        protected set
+
+    @OneToMany(mappedBy = "dancer")
+    var dancerLessons: MutableSet<DancerLesson> = dancerLessons
         protected set
 }

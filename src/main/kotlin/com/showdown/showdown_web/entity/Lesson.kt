@@ -8,11 +8,11 @@ import java.time.LocalTime
 @Entity
 @Table(name = "lesson")
 class Lesson(
-    dancer: Dancer,
     date: LocalDate,
     startTime: LocalTime,
     endTime: LocalTime,
-    level: String
+    level: String,
+    lessonDancers: MutableSet<DancerLesson>
 ) : BaseClass() {
 
     @Column(name = "lesson_date")
@@ -35,8 +35,7 @@ class Lesson(
     var level: String = level
         protected set
 
-    @ManyToOne
-    @JoinColumn(name = "dancer_id")
-    var dancer: Dancer = dancer
+    @OneToMany(mappedBy = "lesson")
+    var lessonDancers: MutableSet<DancerLesson> = lessonDancers
         protected set
 }
