@@ -8,13 +8,13 @@ import jakarta.persistence.*
 @Table(name = "academy")
 class Academy(
     name: String,
-    dancerAcademies: List<DancerAcademy>
+    academyDancers: MutableSet<DancerAcademy>
 ) : BaseClass() {
     @Column(name = "name" , nullable = false)
     var name: String = name
         protected set
 
     @OneToMany(mappedBy = "academy")
-    var dancerAcademies: List<DancerAcademy> = dancerAcademies
+    var academyDancers: MutableSet<DancerAcademy> = academyDancers
         protected set
 }
