@@ -40,6 +40,7 @@ class Lesson(
     var lessonDancers: MutableSet<DancerLesson> = lessonDancers
         protected set
 
-    @OneToOne(mappedBy = "academy")
+    @OneToOne
+    @JoinColumn(name = "academy_id")
     var academy: Academy = academy
 }
