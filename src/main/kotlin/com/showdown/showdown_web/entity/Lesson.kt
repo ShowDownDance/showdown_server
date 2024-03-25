@@ -12,7 +12,8 @@ class Lesson(
     startTime: LocalTime,
     endTime: LocalTime,
     level: String,
-    lessonDancers: MutableSet<DancerLesson>
+    lessonDancers: MutableSet<DancerLesson> = mutableSetOf(),
+    academy: Academy
 ) : BaseClass() {
 
     @Column(name = "lesson_date")
@@ -38,4 +39,7 @@ class Lesson(
     @OneToMany(mappedBy = "lesson")
     var lessonDancers: MutableSet<DancerLesson> = lessonDancers
         protected set
+
+    @OneToOne(mappedBy = "academy")
+    var academy: Academy = academy
 }

@@ -23,7 +23,7 @@ abstract class BaseClass {
         val thisEffectiveClass = getEffectiveClass(this)
         if (thisEffectiveClass  != oEffectiveClass) return false
 
-        other as Dancer
+        other as BaseClass
 
         return id != 0L && id == other.id
     }
@@ -31,9 +31,15 @@ abstract class BaseClass {
     final override fun hashCode(): Int = getEffectiveClass(this).hashCode()
 
 
+
+
     private fun getEffectiveClass(obj: Any?): Class<*> =
         if (obj is HibernateProxy)
             (this as HibernateProxy).hibernateLazyInitializer.persistentClass
         else
             this.javaClass
+
+    override fun toString(): String {
+        return "BaseClass(id=$id)"
+    }
 }
