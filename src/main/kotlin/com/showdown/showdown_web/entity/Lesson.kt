@@ -43,4 +43,7 @@ class Lesson(
     @OneToOne
     @JoinColumn(name = "academy_id")
     var academy: Academy = academy
+    override fun toString(): String {
+        return "Lesson(id=$id, date=$date, startTime=$startTime, endTime=$endTime, dayOfWeek=$dayOfWeek, level='$level', lessonDancers=$lessonDancers, academy=$academy)"
+    }
 }
