@@ -1,6 +1,5 @@
 package com.showdown.showdown_web.entity.common
 
-import com.showdown.showdown_web.entity.Dancer
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id

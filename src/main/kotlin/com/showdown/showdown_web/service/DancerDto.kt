@@ -1,6 +1,5 @@
 package com.showdown.showdown_web.service
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.showdown.showdown_web.entity.Dancer
 
