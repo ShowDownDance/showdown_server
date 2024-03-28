@@ -10,7 +10,7 @@ class Dancer(
     crew: String? = null,
     dancerLessons: MutableSet<DancerLesson> = mutableSetOf()
 ) : BaseClass() {
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     var name: String = name
         protected set
 
