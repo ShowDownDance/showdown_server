@@ -8,6 +8,7 @@ import com.showdown.showdown_web.repository.*
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.scheduling.annotation.Scheduled
 import java.io.File
 import org.springframework.stereotype.Service
 import java.io.IOException
@@ -26,7 +27,7 @@ class SchedulerService @Autowired constructor(
     private val dancersType: CollectionLikeType = mapper.typeFactory.constructCollectionLikeType(Set::class.java, Dancer::class.java)
     private val lessonsType: CollectionLikeType = mapper.typeFactory.constructCollectionLikeType(List::class.java, LessonDto::class.java)
 
-
+    @Scheduled(cron = "0 20 12 1/1 * ? *")
     @Transactional
     fun saveCrawledData() {
         val date: LocalDate = LocalDate.now()
