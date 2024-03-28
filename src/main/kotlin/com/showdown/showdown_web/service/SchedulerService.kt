@@ -7,6 +7,7 @@ import com.showdown.showdown_web.entity.*
 import com.showdown.showdown_web.repository.*
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import java.io.File
 import org.springframework.stereotype.Service
 import java.io.IOException
@@ -17,7 +18,9 @@ class SchedulerService @Autowired constructor(
     private val dancerRepository: DancerRepository,
     private val academyRepository: AcademyRepository,
     private val lessonRepository: LessonRepository,
-    private val dancerLessonRepository: DancerLessonRepository
+    private val dancerLessonRepository: DancerLessonRepository,
+    @Value("\${spring.crawl.location}")
+    private val crawledLocation : String
 ) {
     private val mapper: ObjectMapper = jacksonObjectMapper()
     private val dancersType: CollectionLikeType = mapper.typeFactory.constructCollectionLikeType(Set::class.java, Dancer::class.java)
@@ -190,7 +193,7 @@ class SchedulerService @Autowired constructor(
     }
 
     private fun readJsonData(day: Int): List<LessonDto> {
-        val file : File = File("/Users/devel_sj/showdown_web/items_$day.json")
+        val file : File = File("$crawledLocation/items_$day.json")
 
         if (!file.isFile)
             return listOf()
