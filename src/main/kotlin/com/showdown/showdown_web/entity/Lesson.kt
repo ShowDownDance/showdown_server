@@ -36,7 +36,7 @@ class Lesson(
     var level: String = level
         protected set
 
-    @OneToMany(mappedBy = "lesson")
+    @OneToMany(mappedBy = "lesson", orphanRemoval = true)
     var lessonDancers: MutableSet<DancerLesson> = lessonDancers
         protected set
 
