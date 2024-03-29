@@ -27,7 +27,7 @@ class SchedulerService @Autowired constructor(
     private val dancersType: CollectionLikeType = mapper.typeFactory.constructCollectionLikeType(Set::class.java, Dancer::class.java)
     private val lessonsType: CollectionLikeType = mapper.typeFactory.constructCollectionLikeType(List::class.java, LessonDto::class.java)
 
-    @Scheduled(cron = "0 20 12 1/1 * ? *")
+    @Scheduled(cron = "0 20 0 1/1 * *")
     @Transactional
     fun saveCrawledData() {
         val date: LocalDate = LocalDate.now()
@@ -36,6 +36,11 @@ class SchedulerService @Autowired constructor(
 
         val yesterdayData: List<LessonDto> = readJsonData(yesterday)
         val todayData: List<LessonDto> = readJsonData(today)
+
+        if (todayData.isEmpty()) {
+            //python 에서 안된 것
+            throw Exception("crawled failed")
+        }
 
         val savedDancers: List<Dancer> = dancerRepository.findAll()
         val academies: List<Academy> = academyRepository.findAll()
@@ -71,13 +76,7 @@ class SchedulerService @Autowired constructor(
                     )
                 }
             }
-
-
             return
-        }
-
-        if (todayData.isEmpty()) {
-            throw Exception("crawled failed")
         }
 
         val newData : List<LessonDto> = findNewDatas(
