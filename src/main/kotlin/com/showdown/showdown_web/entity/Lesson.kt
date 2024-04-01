@@ -1,5 +1,6 @@
 package com.showdown.showdown_web.entity
 
+import com.showdown.showdown_web.entity.Academy.Academy
 import com.showdown.showdown_web.entity.common.BaseClass
 import jakarta.persistence.*
 import java.time.LocalDate
@@ -40,10 +41,20 @@ class Lesson(
     var lessonDancers: MutableSet<DancerLesson> = lessonDancers
         protected set
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "academy_id")
     var academy: Academy = academy
+        protected set
     override fun toString(): String {
-        return "Lesson(id=$id, date=$date, startTime=$startTime, endTime=$endTime, dayOfWeek=$dayOfWeek, level='$level', lessonDancers=$lessonDancers, academy=$academy)"
+        return "Lesson(" +
+                "id=$id, " +
+                "date=$date, " +
+                "startTime=$startTime, " +
+                "endTime=$endTime, " +
+                "dayOfWeek=$dayOfWeek, " +
+                "level='$level', " +
+//                "lessonDancers=$lessonDancers, " +
+                "academy=$academy" +
+                ")"
     }
 }

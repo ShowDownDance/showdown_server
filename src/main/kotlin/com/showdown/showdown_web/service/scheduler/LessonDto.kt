@@ -1,4 +1,4 @@
-package com.showdown.showdown_web.service
+package com.showdown.showdown_web.service.scheduler
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.LocalDate

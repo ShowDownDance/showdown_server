@@ -1,9 +1,10 @@
-package com.showdown.showdown_web.service
+package com.showdown.showdown_web.service.scheduler
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.type.CollectionLikeType
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.showdown.showdown_web.entity.*
+import com.showdown.showdown_web.entity.Academy.Academy
 import com.showdown.showdown_web.repository.*
 import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
@@ -37,9 +38,8 @@ class SchedulerService @Autowired constructor(
         val yesterdayData: List<LessonDto> = readJsonData(yesterday)
         val todayData: List<LessonDto> = readJsonData(today)
 
-        if (todayData.isEmpty()) {
-            //python 에서 안된 것
-            throw Exception("crawled failed")
+        check(todayData.isNotEmpty()) {
+            "crawled failed"
         }
 
         val savedDancers: List<Dancer> = dancerRepository.findAll()
@@ -138,7 +138,7 @@ class SchedulerService @Autowired constructor(
 
     private fun findAcademy(enterpriseName: String, academies: List<Academy>): Academy {
         academies.forEach {
-            if (it.name.equals(enterpriseName))
+            if (it.academyName.name.equals(enterpriseName))
                 return it
         }
 
