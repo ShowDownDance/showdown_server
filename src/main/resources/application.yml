@@ -8,8 +8,13 @@ spring:
     password: ${MYSQL_PASSWORD}
   jpa:
     generate-ddl: false
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        generate_statistics: true
   crawl:
     location: ${CRAWLED_LOCATION}
