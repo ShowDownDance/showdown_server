@@ -22,7 +22,7 @@ sealed class LessonResponse() {
 
     data class DateLessonsDto(
         val date: String,
-        val lessons: MutableList<LessonDto>
+        val lessons: List<LessonDto>
     ): LessonResponse()
 }
 
