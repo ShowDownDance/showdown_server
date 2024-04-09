@@ -13,6 +13,7 @@ plugins {
 }
 
 val querydslVersion = "5.0.0"
+val kotestVersion = "5.7.2"
 
 allOpen {
 	annotation("com.my.Annotation")
@@ -62,7 +63,14 @@ dependencies {
 
 	// db
 	runtimeOnly("com.mysql:mysql-connector-j")
+
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+	testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+	testImplementation("io.kotest:kotest-property:$kotestVersion")
+
+
 }
 
 tasks.withType<KotlinCompile> {
