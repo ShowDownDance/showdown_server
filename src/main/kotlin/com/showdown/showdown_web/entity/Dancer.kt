@@ -27,4 +27,8 @@ class Dancer(
 //                "dancerAcademies=$dancerAcademies, dancerLessons=$dancerLessons)"
         return "Dancer(id=$id, name='$name', crew=$crew)"
     }
+
+    fun addLesson(lesson: Lesson) {
+        dancerLessons += DancerLesson(dancer = this, lesson = lesson)
+    }
 }
