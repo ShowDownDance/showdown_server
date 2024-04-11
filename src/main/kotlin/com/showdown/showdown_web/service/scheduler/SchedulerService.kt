@@ -48,11 +48,13 @@ class SchedulerService @Autowired constructor(
         if (yesterdayData.isEmpty()) {
             // 새로운 데이터 중 중복으로 겹치는 dancer data 삭제
             val newDancersDto: Set<DancerDto> = findNewDancerFromNewDatas(newData = todayData, savedDancers = savedDancers)
-            newDancersDto.forEach {
-                val dancer = dancerRepository.save(
-                    it.toEntity()
-                )
-            }
+//            newDancersDto.forEach {
+//                val dancer = dancerRepository.save(
+//                    it.toEntity()
+//                )
+//            }
+
+            dancerRepository.saveAll(DancerDto.toEntities(newDancersDto))
 
             todayData.forEach {
                 val lesson = lessonRepository.save(
@@ -83,6 +85,7 @@ class SchedulerService @Autowired constructor(
             todayCrawledDatas = todayData,
             yesterdayCrawledDatas = yesterdayData
         )
+
         val deletedData: List<LessonDto> = findDeletedDatas(
             todayCrawledDatas = todayData,
             yesterdayCrawledDatas = yesterdayData,
@@ -118,6 +121,9 @@ class SchedulerService @Autowired constructor(
                 )
             }
         }
+
+        println("hellozz")
+        println(deletedData.size)
 
         deletedData.forEach { l ->
             l.dancers.forEach { d ->
