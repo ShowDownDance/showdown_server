@@ -40,4 +40,4 @@ out/
 .kotlin
 
 src/main/resources/application-local.yml
-src/main/resources/application-remote.yml
+src/main/resources/application-prod.yml
