@@ -85,6 +85,9 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+
+
 tasks.withType<Test> {
 	useJUnitPlatform()
+	jvmArgs = listOf("-Xshare:off") // JVM 아규먼트 설정
 }
