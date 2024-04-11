@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter
 class LessonService @Autowired constructor(
     private val lessonRepository: LessonRepository,
 ) {
-
     @Transactional
     fun getLessonsTypeWithAcademy(
         academyName: AcademyName?
@@ -111,22 +110,22 @@ class LessonService @Autowired constructor(
     }
 
     private fun sortByAcademy(specificDayLessons: List<Lesson>) : List<AcademyLessonsDto> {
-        val oneMillionLessons =
-            AcademyLessonsDto(academy = AcademyName.OneMillion.name, lessons = mutableListOf())
-        val ygxLessons = AcademyLessonsDto(academy = AcademyName.YGX.name, lessons = mutableListOf())
-        val ofdLessons = AcademyLessonsDto(academy = AcademyName.OFD.name, lessons = mutableListOf())
+        val oneMillionLessons = mutableListOf<LessonDto>()
+        val ygxLessons = mutableListOf<LessonDto>()
+        val ofdLessons = mutableListOf<LessonDto>()
 
         specificDayLessons.forEach {
             when (it.academy.academyName) {
-                AcademyName.OneMillion ->
-                    oneMillionLessons.lessons.add(LessonDto.fromEntity(it))
-                AcademyName.YGX ->
-                    ygxLessons.lessons.add(LessonDto.fromEntity(it))
-                AcademyName.OFD ->
-                    ofdLessons.lessons.add(LessonDto.fromEntity(it))
+                AcademyName.OneMillion -> oneMillionLessons.add(LessonDto.fromEntity(it))
+                AcademyName.YGX -> ygxLessons.add(LessonDto.fromEntity(it))
+                AcademyName.OFD -> ofdLessons.add(LessonDto.fromEntity(it))
             }
         }
 
-        return listOf(oneMillionLessons, ygxLessons, ofdLessons)
+        return listOf(
+            AcademyLessonsDto(academy = AcademyName.OneMillion.name, lessons = oneMillionLessons.toList()),
+            AcademyLessonsDto(academy = AcademyName.YGX.name, lessons = ygxLessons.toList()),
+            AcademyLessonsDto(academy = AcademyName.OFD.name, lessons = ofdLessons.toList()),
+        )
     }
 }
