@@ -16,8 +16,10 @@ class LessonRepositoryCustomImpl(
         return queryFactory
             .select(lesson.id)
             .from(lesson)
-            .innerJoin(lesson.lessonDancers, dancerLesson).on(lesson.id.eq(dancerLesson.lesson.id))
-            .innerJoin(dancerLesson.dancer, dancer).on(dancerLesson.dancer.id.eq(dancer.id))
+//            .innerJoin(lesson.lessonDancers, dancerLesson).on(lesson.id.eq(dancerLesson.lesson.id)).fetchJoin()
+            .innerJoin(lesson.lessonDancers, dancerLesson).fetchJoin()
+//            .innerJoin(dancerLesson.dancer, dancer).on(dancerLesson.dancer.id.eq(dancer.id)).fetchJoin()
+            .innerJoin(dancerLesson.dancer, dancer).fetchJoin()
             .where(lesson.date.eq(date))
             .where(lesson.startTime.eq(startTime))
             .where(dancer.name.eq(dancerName))

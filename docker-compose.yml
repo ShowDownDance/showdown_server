@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  showdown:
+    container_name: showdown
+    image: davidolleh/showdown
+    ports:
+      - '8080:8080'

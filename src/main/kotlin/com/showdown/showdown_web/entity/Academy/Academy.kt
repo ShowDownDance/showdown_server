@@ -8,11 +8,15 @@ import jakarta.persistence.*
 @Table(name = "academy")
 class Academy(
     academyName: AcademyName,
+    url: String
 ) : BaseClass() {
     @Convert(converter = AcademyNameConverter::class)
     @Column(name = "name" , nullable = false)
     var academyName: AcademyName = academyName
         protected set
+
+    @Column(name = "url")
+    var url: String = url
 
     override fun toString(): String {
         return "Academy(name='$academyName')"
