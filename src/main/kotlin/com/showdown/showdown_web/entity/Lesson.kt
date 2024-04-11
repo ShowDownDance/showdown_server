@@ -57,4 +57,10 @@ class Lesson(
                 "academy=$academy" +
                 ")"
     }
+
+    // TODO :: filter를 하는 기능이 도메인 기능인지 고민해보기
+//    companion object {
+//        fun filterByAcademy(lessons:List<Lesson>, academy: Academy): List<Lesson> = lessons.filter { it.academy.academyName == academy.academyName }
+//        fun filterByDate(lessons: List<Lesson>, specificDate: LocalDate) = lessons.filter { it.date == specificDate }
+//    }
 }
