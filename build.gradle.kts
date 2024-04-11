@@ -13,7 +13,7 @@ plugins {
 }
 
 val querydslVersion = "5.0.0"
-val kotestVersion = "5.7.2"
+val kotestVersion = "5.8.0"
 
 allOpen {
 	annotation("com.my.Annotation")
@@ -69,7 +69,12 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
 	testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 	testImplementation("io.kotest:kotest-property:$kotestVersion")
+	implementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
 
+	testImplementation("io.mockk:mockk:1.13.7")
+	testImplementation("com.ninja-squad:springmockk:4.0.2")
+
+	testImplementation("io.github.serpro69:kotlin-faker:1.15.0")
 
 }
 
