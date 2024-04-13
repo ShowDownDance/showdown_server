@@ -7,6 +7,7 @@ import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.mockk.clearMocks
 import com.ninjasquad.springmockk.MockkBean
+import io.kotest.matchers.shouldBe
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 
 @WebMvcTest(
@@ -15,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
     ]
 )
 open class WebMvcTestAdapter(body: FreeSpec.() -> Unit = {}): WebMvcTestSpec(body) {
+
     @MockkBean
     protected lateinit var lessonService: LessonService
 

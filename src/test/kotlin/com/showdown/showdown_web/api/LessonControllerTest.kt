@@ -18,8 +18,10 @@ import java.time.LocalDate
 
 class LessonControllerTest : WebMvcTestAdapter() {
     init {
-        "hello".length shouldBe 5
+        "hello" {
+            "hello".length shouldBe 5
 
+        }
     }
 
 
