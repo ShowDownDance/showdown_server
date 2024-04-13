@@ -13,7 +13,7 @@ plugins {
 }
 
 val querydslVersion = "5.0.0"
-val kotestVersion = "5.8.0"
+val kotestVersion = "5.7.2"
 
 allOpen {
 	annotation("com.my.Annotation")
@@ -65,7 +65,11 @@ dependencies {
 	runtimeOnly("com.mysql:mysql-connector-j")
 
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude(group = "org.mockito")
+		exclude(group = "org.assertj")
+		exclude(group = "org.hamcrest")
+	}
 	testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
 	testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
 	testImplementation("io.kotest:kotest-property:$kotestVersion")
@@ -75,7 +79,6 @@ dependencies {
 	testImplementation("com.ninja-squad:springmockk:4.0.2")
 
 	testImplementation("io.github.serpro69:kotlin-faker:1.15.0")
-
 }
 
 tasks.withType<KotlinCompile> {
