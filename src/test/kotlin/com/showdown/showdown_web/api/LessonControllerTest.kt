@@ -8,15 +8,22 @@ import com.showdown.showdown_web.entity.Dancer
 import com.showdown.showdown_web.entity.Lesson
 import com.showdown.showdown_web.seed.createDancer
 import com.showdown.showdown_web.seed.createLesson
+import io.kotest.core.spec.style.Test
+import io.kotest.matchers.shouldBe
 import io.mockk.every
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import java.time.LocalDate
 
 
-class LessonControllerTest: WebMvcTestAdapter() {
+class LessonControllerTest : WebMvcTestAdapter() {
     init {
+        "hello".length shouldBe 5
 
     }
+
+
+
 //    init {
 //        "특정 Date를 가지고 수업 정보를 받는다" {
 //            val specificDate : LocalDate = LocalDate.now()

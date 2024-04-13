@@ -6,8 +6,8 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.mockk.clearMocks
+import com.ninjasquad.springmockk.MockkBean
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
 
 @WebMvcTest(
     controllers = [
@@ -15,10 +15,10 @@ import org.springframework.boot.test.mock.mockito.MockBean
     ]
 )
 open class WebMvcTestAdapter(body: FreeSpec.() -> Unit = {}): WebMvcTestSpec(body) {
-    @MockBean
+    @MockkBean
     protected lateinit var lessonService: LessonService
 
-    @MockBean
+    @MockkBean
     protected lateinit var schedulerService: SchedulerService
 
     override suspend fun afterAny(testCase: TestCase, result: TestResult) {
