@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${ACTIVE_PROFILE:local}
+    active: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}
@@ -18,3 +18,47 @@ spring:
         generate_statistics: true
   crawl:
     location: ${CRAWLED_LOCATION}
+
+---
+spring:
+  profiles:
+    active: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    generate-ddl: false
+    #    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        generate_statistics: true
+  crawl:
+    location: ${CRAWLED_LOCATION}
+
+---
+spring:
+  profiles:
+    active: test
+  datasource:
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+  crawl:
+    location: ${CRAWLED_LOCATION}
+
+logging:
+  level:
+    org.hibernate.SQL: debug
