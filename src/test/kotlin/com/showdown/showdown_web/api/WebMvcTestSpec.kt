@@ -17,11 +17,5 @@ import org.springframework.test.context.web.WebAppConfiguration
 @WebAppConfiguration
 //@Suppress("SpringJavaAutowiredMembersInspection")
 open class WebMvcTestSpec(body: FreeSpec.() -> Unit = {}) : FreeSpec(body) {
-    init {
-        "init test" {
-            "hello".length shouldBe 5
-
-        }
-    }
     override fun extensions(): List<Extension>  = listOf(SpringExtension)
 }

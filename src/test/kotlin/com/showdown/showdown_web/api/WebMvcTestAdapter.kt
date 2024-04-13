@@ -16,12 +16,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
     ]
 )
 open class WebMvcTestAdapter(body: FreeSpec.() -> Unit = {}): WebMvcTestSpec(body) {
-    init {
-        "init test" {
-            "hello".length shouldBe 5
-
-        }
-    }
 
     @MockkBean
     protected lateinit var lessonService: LessonService
