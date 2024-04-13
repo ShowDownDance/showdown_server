@@ -62,6 +62,7 @@ dependencies {
 	implementation("ch.qos.logback:logback-core:1.5.3")
 
 	// db
+	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.mysql:mysql-connector-j")
 
 
