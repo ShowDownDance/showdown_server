@@ -122,9 +122,6 @@ class SchedulerService @Autowired constructor(
             }
         }
 
-        println("hellozz")
-        println(deletedData.size)
-
         deletedData.forEach { l ->
             l.dancers.forEach { d ->
                 val lessonIds = lessonRepository.findLessonByDateAndStartTimeAndDancerName(
@@ -199,7 +196,7 @@ class SchedulerService @Autowired constructor(
     }
 
     private fun readJsonData(day: Int): List<LessonDto> {
-        val file : File = File("$crawledLocation/items_$day.json")
+        val file : File = File("$crawledLocation$day.json")
 
         if (!file.isFile)
             return listOf()
