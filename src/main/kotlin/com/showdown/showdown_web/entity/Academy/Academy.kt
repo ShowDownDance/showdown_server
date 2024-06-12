@@ -17,8 +17,9 @@ class Academy(
 
     @Column(name = "url")
     var url: String = url
-
     override fun toString(): String {
-        return "Academy(name='$academyName')"
+        return "Academy(academyName=$academyName, url='$url')"
     }
+
+
 }
