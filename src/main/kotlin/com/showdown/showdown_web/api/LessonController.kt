@@ -6,6 +6,7 @@ import com.showdown.showdown_web.api.dto.LessonResponse
 import com.showdown.showdown_web.entity.Academy.AcademyName
 import com.showdown.showdown_web.service.lesson.LessonService
 import com.showdown.showdown_web.service.scheduler.SchedulerService
+import com.showdown.showdown_web.api.RequestType.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,8 +30,8 @@ class LessonController @Autowired constructor(
         @RequestParam(required = false) target: String?
     ) : ApiResponse<List<LessonResponse>> {
         val lessons =  when (type) {
-            RequestType.DATE -> lessonService.getLessonsTypeWithDate(date = target)
-            RequestType.ACADEMY -> lessonService.getLessonsTypeWithAcademy(
+            DATE -> lessonService.getLessonsTypeWithDate(date = target)
+            ACADEMY -> lessonService.getLessonsTypeWithAcademy(
                 academyName = AcademyName.convertStringToAcademyName(target)
             )
         }
