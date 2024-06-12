@@ -46,13 +46,9 @@ fun createAcademies() = listOf<Academy>(
 )
 
 fun createRandomAcademy() : Academy {
-    val academyName : AcademyName = faker.randomProvider.randomClassInstance<AcademyName>()
-    return faker.randomProvider.randomClassInstance<Academy> {
-        typeGenerator { academyName.id }
-        typeGenerator { academyName }
-        typeGenerator { "a url" }
-    }
+    val randomAcademy : Academy = faker.randomProvider.randomClassInstance<Academy>()
 
+    return randomAcademy
 //    val academies = createAcademies()
 //    return academies[faker.random.nextInt(0..2)]
 }
