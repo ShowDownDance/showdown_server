@@ -114,3 +114,17 @@ tasks.asciidoctor {
 	configurations("asciidoctorExt")
 	dependsOn(tasks.test)
 }
+
+tasks.bootJar {
+	dependsOn(tasks.asciidoctor)
+	finalizedBy("copyDocument")
+}
+
+tasks.register<Copy>("copyDocument") {
+	dependsOn(tasks.asciidoctor)
+
+	destinationDir = file(".")
+	from(tasks.asciidoctor.get().outputDir) {
+		into("src/main/resources/static/docs")
+	}
+}
