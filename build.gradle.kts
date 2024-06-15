@@ -115,6 +115,17 @@ tasks.asciidoctor {
 	dependsOn(tasks.test)
 }
 
+tasks.asciidoctor {
+	doFirst {
+		println("=====start asciidoctor")
+		delete(file("src/main/resources/static/docs"))
+	}
+
+	doLast {
+		println("=====finish asciidoctor")
+	}
+}
+
 tasks.bootJar {
 	dependsOn(tasks.asciidoctor)
 	finalizedBy("copyDocument")
