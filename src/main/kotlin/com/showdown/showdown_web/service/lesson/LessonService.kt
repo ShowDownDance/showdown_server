@@ -52,7 +52,7 @@ class LessonService @Autowired constructor(
     }
 
     @Transactional
-    fun getLessonsTypeWithDate(date: String?) : List<LessonResponse> {
+    fun getLessonsTypeWithDate(date: String? = null) : List<LessonResponse> {
         if (date == null) {
             val today = LocalDate.now()
             val lessons: List<Lesson> = lessonRepository.findLessonsByDateBetweenOrderByDate(
