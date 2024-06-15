@@ -1,0 +1,3 @@
+operation::get-specific-date-lesson[snippets='http-request,query-parameters,response-body,response-fields']
+
+operation::get-2week-lessons[snippets='http-request,query-parameters,response-body,response-fields']
