@@ -118,7 +118,7 @@ tasks.asciidoctor {
 tasks.asciidoctor {
 	doFirst {
 		println("=====start asciidoctor")
-		delete(file("src/main/resources/static/docs"))
+		delete("src/main/resources/static/docs")
 	}
 
 	doLast {
